@@ -1,4 +1,4 @@
-# Hemlock ARP Spoofer 🐍🔌
+# Hemlock ARP Spoofer 🐍
 
 A modern GUI-based ARP poisoning tool for ethical network security testing, featuring intuitive controls and visual feedback.
 
@@ -30,3 +30,5 @@ sudo python3 hemlock.py
 3. Specify target IPs and spoofing interval
 
 4. Toggle the switch to start/stop poisoning
+
+<img width="441" height="462" alt="image" src="https://github.com/user-attachments/assets/d59b4542-fe9d-490e-b54f-28ce3efcc96d" />
