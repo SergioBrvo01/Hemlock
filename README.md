@@ -31,4 +31,6 @@ sudo python3 hemlock.py
 
 4. Toggle the switch to start/stop poisoning
 
-<img width="441" height="462" alt="image" src="https://github.com/user-attachments/assets/d59b4542-fe9d-490e-b54f-28ce3efcc96d" />
+<p align="center">
+  <img width="441" height="462" alt="Hemlock Interface" src="https://github.com/user-attachments/assets/d59b4542-fe9d-490e-b54f-28ce3efcc96d">
+</p>
