@@ -16,11 +16,10 @@ A modern GUI-based ARP poisoning tool for ethical network security testing, feat
 - Linux system
 - Root privileges
 - Required packages:
-  ```bash
-  pip install customtkinter scapy CTkMessagebox
-  ```
+```bash
+pip install customtkinter scapy CTkMessagebox
+```
 ## Usage 🚀
-
 1. Run with root privileges:
 
 ```bash
