@@ -1,15 +1,16 @@
 #!/usr/bin/env python3
 import customtkinter, subprocess, sys, re, time, os, threading
-from CTkMessagebox import CTkMessagebox
 import scapy.all as scapy
+from CTkMessagebox import CTkMessagebox
+
 
 #def values_validate(router, victim):
-
 
 def spoofing_switch_changed(state, routerip, victimip, timespoof, mac):
     router = routerip.get()
     victim = victimip.get()
     timespoof = int(timespoof.get())
+
     while state.get() == 1:
         try:
             state.configure(text="Spoofing ON 🟢")
@@ -38,7 +39,7 @@ def main():
             if mac_pattern.match(mac):
                 break
             else:
-                error_mac_message = "\n\nWrong MAC value"
+                error_mac_message = "\n\nInvalid MAC value"
     except:
         sys.exit(1)
 
@@ -53,21 +54,21 @@ def main():
 
     routerip = customtkinter.CTkLabel(windows, text="Router IP", font=customtkinter.CTkFont(size=15), anchor="center")
     routerip.grid(padx=5, pady=5, row=1, column=0, columnspan=2, sticky="ew")
-    routerip_name = customtkinter.CTkEntry(windows, justify="center")
-    routerip_name.grid(row=2, column=0, columnspan=2, padx=5, pady=5, sticky="ew")
+    routerip_value = customtkinter.CTkEntry(windows, justify="center")
+    routerip_value.grid(row=2, column=0, columnspan=2, padx=5, pady=5, sticky="ew")
 
     victimip = customtkinter.CTkLabel(windows, text="Victim IP", font=customtkinter.CTkFont(size=15), anchor="center")
     victimip.grid(padx=5, pady=5, row=1, column=2, columnspan=2, sticky="ew")
-    victimip_name = customtkinter.CTkEntry(windows, justify="center")
-    victimip_name.grid(row=2, column=2, columnspan=2, padx=5, pady=5, sticky="ew")
+    victimip_value = customtkinter.CTkEntry(windows, justify="center")
+    victimip_value.grid(row=2, column=2, columnspan=2, padx=5, pady=5, sticky="ew")
 
-    timespoof_name = customtkinter.CTkLabel(windows, text="ARP Poisoning Interval (sec)", font=customtkinter.CTkFont(size=12), anchor="center")
-    timespoof_name.grid(padx=10, pady=5, row=3, column=1, columnspan=2, sticky="ew")
-    timespoof = customtkinter.CTkOptionMenu(windows, dynamic_resizing=False, values=["1", "3", "5", "10", "20", "30"], anchor="center")
-    timespoof.grid(row=4, column=1, columnspan=2)
+    timespoof = customtkinter.CTkLabel(windows, text="ARP Poisoning Interval (sec)", font=customtkinter.CTkFont(size=12), anchor="center")
+    timespoof.grid(padx=10, pady=5, row=3, column=1, columnspan=2, sticky="ew")
+    timespoof_value = customtkinter.CTkOptionMenu(windows, dynamic_resizing=False, values=["1", "3", "5", "10", "20", "30"], anchor="center")
+    timespoof_value.grid(row=4, column=1, columnspan=2)
 
     state = customtkinter.CTkSwitch(windows, text="Spoofing OFF 🔴", font=customtkinter.CTkFont(size=10),
-                                    command=lambda: threading.Thread(target=spoofing_switch_changed, args=(state, routerip_name, victimip_name, timespoof, mac), daemon=True).start())
+                                    command=lambda: threading.Thread(target=spoofing_switch_changed, args=(state, routerip_value, victimip_value, timespoof_value, mac), daemon=True).start())
     state.grid(row=5, column=1, columnspan=2, padx=20, pady=40)
 
     credit = customtkinter.CTkLabel(windows, text="v0.5 | by SergioBrvo01", font=customtkinter.CTkFont(size=10), fg_color=("gray85", "gray25"), corner_radius=5, padx=10)
@@ -84,7 +85,7 @@ if __name__ == "__main__":
             main()
         else:
             error_window = customtkinter.CTk()
-            CTkMessagebox(title="Wrong User", message="You must be ROOT user", icon="cancel")
+            CTkMessagebox(title="Invalid User", message="You must be ROOT user", icon="cancel")
             error_window.after(3000, error_window.destroy)
             error_window.withdraw()
             error_window.mainloop()
