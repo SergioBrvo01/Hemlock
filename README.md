@@ -1,16 +1,16 @@
-# Hemlock ARP Spoofer 🐍
+# Hemlock ARP Spoofer
 
 A modern GUI-based ARP poisoning tool for ethical network security testing, featuring intuitive controls and visual feedback.
 
-## Features ✨
+## Features
 
 - **ARP Cache Poisoning** - Execute man-in-the-middle attacks between router and target
 - **Customizable Timing** - Adjust spoofing interval (1-30 seconds)
-- **Input Validation** - Strict MAC address format checking
+- **Input Validation** - Strict input validation
 - **Visual Indicators** - Color-coded status (🟢/🔴) and centered UI elements
 - **Automatic iptables** - Handles FORWARD policy during operation
 
-## Requirements 📋
+## Requirements
 
 - Python 3.8+
 - Linux system
@@ -19,7 +19,7 @@ A modern GUI-based ARP poisoning tool for ethical network security testing, feat
 ```bash
 pip install customtkinter scapy CTkMessagebox
 ```
-## Usage 🚀
+## Usage
 1. Run with root privileges:
 
 ```bash
