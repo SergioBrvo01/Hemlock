@@ -7,7 +7,7 @@ A modern GUI-based ARP poisoning tool for ethical network security testing, feat
 - **ARP Cache Poisoning** - Execute man-in-the-middle attacks between router and target
 - **Customizable Timing** - Adjust spoofing interval (1-30 seconds)
 - **Input Validation** - Strict input validation
-- **Visual Indicators** - Color-coded status (🟢/🔴) and centered UI elements
+- **Visual Indicators** - Color-coded status (🟢/🔴)
 - **Automatic iptables** - Handles FORWARD policy during operation
 
 ## Requirements
